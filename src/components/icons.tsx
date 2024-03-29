@@ -1,0 +1,31 @@
+import {
+  Megaphone,
+  Plus,
+  Ruler,
+  LogOut,
+  Loader,
+  Menu,
+  Pencil,
+  Trash,
+  X,
+  ExternalLink,
+  MoreHorizontal,
+  ChevronDown,
+  CalendarIcon,
+} from "lucide-react";
+
+export const Icons = {
+  megaphone: Megaphone,
+  plus: Plus,
+  ruler: Ruler,
+  logOut: LogOut,
+  loader: Loader,
+  menu: Menu,
+  pencil: Pencil,
+  trash: Trash,
+  close: X,
+  externalLink: ExternalLink,
+  moreHorizontal: MoreHorizontal,
+  chevronDown: ChevronDown,
+  calendarIcon: CalendarIcon,
+};

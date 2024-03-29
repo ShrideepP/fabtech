@@ -1,0 +1,43 @@
+import { z } from "zod";
+
+export const productMeasurementsSchema = z.object({
+  design_selection: z.string().optional(),
+  quantity: z.coerce.number().default(1).optional(),
+  design_ref: z.string().optional(),
+  design_rate: z.coerce.number().default(0).optional(),
+  location: z.string().optional(),
+  floor_number: z.string().optional(),
+  granite: z.string().optional(),
+  colour: z.string().optional(),
+  lock: z.string().optional(),
+  mosquito_window: z.string().optional(),
+  glass: z.string().optional(),
+  note: z.string().optional(),
+  w1: z.coerce.number().optional(),
+  w2: z.coerce.number().optional(),
+  w3: z.coerce.number().optional(),
+  h1: z.coerce.number().optional(),
+  h2: z.coerce.number().optional(),
+  h3: z.coerce.number().optional(),
+});
+
+export const defaultValues: z.infer<typeof productMeasurementsSchema> = {
+  design_selection: "",
+  quantity: 1,
+  design_ref: "",
+  design_rate: 0,
+  location: "",
+  floor_number: "",
+  granite: "",
+  colour: "",
+  lock: "",
+  mosquito_window: "",
+  glass: "",
+  note: "",
+  w1: 0,
+  w2: 0,
+  w3: 0,
+  h1: 0,
+  h2: 0,
+  h3: 0,
+};

@@ -34,7 +34,7 @@ export default async function ViewDetails({ params }: ViewDetailsProps) {
         {customerDetails?.party_name} - Details
       </h2>
       <Separator />
-      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize">
+      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize underline underline-offset-4">
         Basic Details
       </h4>
       <BasicDetails
@@ -45,12 +45,12 @@ export default async function ViewDetails({ params }: ViewDetailsProps) {
         defaultValues={customerDetails}
       />
       <Separator />
-      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize">
+      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize underline underline-offset-4">
         Product Measurements
       </h4>
       <MeasurementsContainer id={params?.customerId} mode="read" />
       <Separator />
-      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize">
+      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize underline underline-offset-4">
         Process Details
       </h4>
       <ProcessDetails

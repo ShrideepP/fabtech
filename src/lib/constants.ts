@@ -11,7 +11,7 @@ export const PAGE_LINKS = [
   },
   {
     id: 2,
-    name: "Add Entry",
+    name: "Add Customer",
     pageURL: "/marketing/add",
     icon: Icons.plus,
   },
@@ -23,7 +23,7 @@ export const PAGE_LINKS = [
   },
   {
     id: 4,
-    name: "Add Entry",
+    name: "Add Measurement",
     pageURL: "/finalised-measurements/add",
     icon: Icons.plus,
   },

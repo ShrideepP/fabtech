@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { TABLE_NAMES } from "@/lib/constants";
 
-import ProcessDetails from "@/components/forms/process-details/marketing";
+import ProcessDetails from "@/components/forms/process-details/finalised-measurements";
 import MeasurementsContainer from "@/components/measurements-container";
 import BasicDetails from "@/components/forms/basic-details";
 import { Separator } from "@/components/ui/separator";

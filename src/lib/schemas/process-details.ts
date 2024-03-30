@@ -13,7 +13,7 @@ export const marketingSchema = z.object({
 
 export const finalisedMeasurementsSchema = z.object({
   advance_payment_date: z.coerce.date().optional(),
-  advance_payment_amount: z.string(),
+  advance_payment_amount: z.string().optional(),
   installation: z.coerce.date().optional(),
   finishing_visit: z.coerce.date().optional(),
   quality_check_done_by: z.coerce.string().optional(),

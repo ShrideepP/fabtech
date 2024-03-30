@@ -3,6 +3,7 @@
 import { ProductMeasurementsContext } from "./context/product-measurement-context";
 import { ProductMeasurement } from "./context/product-measurement-context";
 import { doIdsMatch, checkInputValue } from "@/lib/utils";
+import { useRouter, usePathname } from "next/navigation";
 import { useContext } from "react";
 
 import DeleteMeasurementAlert from "./delete-measurement-alert";
@@ -20,6 +21,10 @@ export default function MeasurementCard({
   mode,
   measurement,
 }: MeasurementCardProps) {
+  const router = useRouter();
+
+  const pathname = usePathname();
+
   const context = useContext(ProductMeasurementsContext);
 
   return (
@@ -69,27 +74,38 @@ export default function MeasurementCard({
       </div>
 
       <div className="flex items-center justify-between">
-        <Button type="button" onClick={() => context?.handleView(measurement)}>
-          {context?.view ? "Cancel" : "View Details"}
-        </Button>
-
-        {mode === "createOrUpdate" && (
-          <div className="flex items-center gap-2.5">
+        {mode === "read" ? (
+          <Button
+            type="button"
+            onClick={() => router.push(`${pathname}/${measurement.id}`)}
+          >
+            View Details
+          </Button>
+        ) : (
+          <>
             <Button
-              size="icon"
               type="button"
-              variant="outline"
-              onClick={() => context?.handleEdit(measurement)}
+              onClick={() => context?.handleView(measurement)}
             >
-              {context?.edit ? (
-                <Icons.close className="w-4 h-4" />
-              ) : (
-                <Icons.pencil className="w-4 h-4" />
-              )}
+              {context?.view ? "Cancel" : "View Details"}
             </Button>
+            <div className="flex items-center gap-2.5">
+              <Button
+                size="icon"
+                type="button"
+                variant="outline"
+                onClick={() => context?.handleEdit(measurement)}
+              >
+                {context?.edit ? (
+                  <Icons.close className="w-4 h-4" />
+                ) : (
+                  <Icons.pencil className="w-4 h-4" />
+                )}
+              </Button>
 
-            <DeleteMeasurementAlert measurementId={measurement.id} />
-          </div>
+              <DeleteMeasurementAlert measurementId={measurement.id} />
+            </div>
+          </>
         )}
       </div>
     </div>

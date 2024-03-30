@@ -40,11 +40,13 @@ import { Icons } from "../icons";
 interface ProductMeasurementsProps {
   id?: string;
   mode: "read" | "createOrUpdate";
+  preDefinedValues?: z.infer<typeof formSchema>;
 }
 
 export default function ProductMeasurements({
   id,
   mode,
+  preDefinedValues,
 }: ProductMeasurementsProps) {
   const router = useRouter();
 
@@ -60,7 +62,7 @@ export default function ProductMeasurements({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues,
+    defaultValues: preDefinedValues ?? defaultValues,
   });
 
   const designSelection = form.watch("design_selection");
@@ -106,7 +108,7 @@ export default function ProductMeasurements({
   useEffect(() => {
     if (context?.view) form.reset(context.view);
     else if (context?.edit) form.reset(context.edit);
-    else form.reset(defaultValues);
+    else form.reset(preDefinedValues ?? defaultValues);
   }, [context?.view, context?.edit]);
 
   return (
@@ -533,55 +535,57 @@ export default function ProductMeasurements({
           </div>
         </div>
 
-        <div className="flex items-center gap-2.5">
-          {context?.view ? (
-            <></>
-          ) : context?.edit ? (
-            <Button size="lg" type="submit" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <Icons.loader className="w-4 h-4 mr-2 animate-spin" />
-                  Loading...
-                </>
-              ) : (
-                "Save Changes"
-              )}
-            </Button>
-          ) : (
-            <Button size="lg" type="submit" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <Icons.loader className="w-4 h-4 mr-2 animate-spin" />
-                  Loading...
-                </>
-              ) : (
-                "Add Measurement"
-              )}
-            </Button>
-          )}
+        {mode !== "read" && (
+          <div className="flex items-center gap-2.5">
+            {context?.view ? (
+              <></>
+            ) : context?.edit ? (
+              <Button size="lg" type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Icons.loader className="w-4 h-4 mr-2 animate-spin" />
+                    Loading...
+                  </>
+                ) : (
+                  "Save Changes"
+                )}
+              </Button>
+            ) : (
+              <Button size="lg" type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Icons.loader className="w-4 h-4 mr-2 animate-spin" />
+                    Loading...
+                  </>
+                ) : (
+                  "Add Measurement"
+                )}
+              </Button>
+            )}
 
-          {context?.view || context?.edit ? (
-            <Button
-              size="lg"
-              type="button"
-              variant="secondary"
-              onClick={() => {
-                context.setView(null), context.setEdit(null);
-              }}
-            >
-              Cancel
-            </Button>
-          ) : (
-            <Button
-              size="lg"
-              type="button"
-              variant="outline"
-              onClick={onSkipAndContinue}
-            >
-              Skip & Continue
-            </Button>
-          )}
-        </div>
+            {context?.view || context?.edit ? (
+              <Button
+                size="lg"
+                type="button"
+                variant="secondary"
+                onClick={() => {
+                  context.setView(null), context.setEdit(null);
+                }}
+              >
+                Cancel
+              </Button>
+            ) : (
+              <Button
+                size="lg"
+                type="button"
+                variant="outline"
+                onClick={onSkipAndContinue}
+              >
+                Skip & Continue
+              </Button>
+            )}
+          </div>
+        )}
       </form>
     </Form>
   );

@@ -122,6 +122,20 @@ export default function BasicDetails({
     }
   }
 
+  function copyToClipboard() {
+    if (navigator.clipboard && form.getValues().gmap) {
+      navigator.clipboard
+        .writeText(form.getValues().gmap)
+        .then(() => toast({ title: "Copied" }))
+        .catch(() =>
+          toast({
+            title: "Oops! something went wrong",
+            variant: "destructive",
+          })
+        );
+    }
+  }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
@@ -317,11 +331,30 @@ export default function BasicDetails({
               <FormItem>
                 <FormLabel>Google maps location</FormLabel>
                 <FormControl>
-                  <Input
-                    readOnly={mode === "read"}
-                    placeholder="Enter google maps location"
-                    {...field}
-                  />
+                  <div className="w-full flex items-end gap-2">
+                    <Input
+                      readOnly={mode === "read"}
+                      placeholder="Enter google maps location"
+                      {...field}
+                      className="flex-1"
+                    />
+                    {mode === "read" && form.getValues().gmap && (
+                      <>
+                        <a href={form.getValues().gmap} target="_blank">
+                          <Button size="icon" type="button" variant="secondary">
+                            <Icons.externalLink className="w-4 h-4" />
+                          </Button>
+                        </a>
+                        <Button
+                          size="icon"
+                          type="button"
+                          onClick={copyToClipboard}
+                        >
+                          <Icons.copy className="w-4 h-4" />
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

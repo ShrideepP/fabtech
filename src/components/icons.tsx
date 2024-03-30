@@ -12,6 +12,7 @@ import {
   MoreHorizontal,
   ChevronDown,
   CalendarIcon,
+  Copy,
 } from "lucide-react";
 
 export const Icons = {
@@ -28,4 +29,5 @@ export const Icons = {
   moreHorizontal: MoreHorizontal,
   chevronDown: ChevronDown,
   calendarIcon: CalendarIcon,
+  copy: Copy,
 };

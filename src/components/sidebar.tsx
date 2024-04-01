@@ -32,7 +32,7 @@ export default function Sidebar() {
     try {
       const response: {
         error: AuthError | null;
-      } = JSON.parse(await signout());
+      } = await signout();
 
       if (response?.error) {
         return toast({

@@ -8,8 +8,8 @@ interface AuthLayoutProps {
 export default async function AuthLayout({ children }: AuthLayoutProps) {
   const supabase = createClient();
 
-  const { data, error } = await supabase.auth.getUser();
-  if (!error || data?.user) redirect("/");
+  const { data } = await supabase.auth.getUser();
+  if (data?.user) redirect("/");
 
   return children;
 }

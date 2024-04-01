@@ -53,9 +53,7 @@ export default function ResetPassword() {
     try {
       const code = params.get("code") || null;
       if (code) {
-        const response: AuthTokenResponse = JSON.parse(
-          await exchangeCodeForSession(code)
-        );
+        const response: AuthTokenResponse = await exchangeCodeForSession(code);
 
         if (response?.error) {
           return toast({
@@ -65,9 +63,7 @@ export default function ResetPassword() {
         }
       }
 
-      const response: UserResponse = JSON.parse(
-        await resetUserPassword(values.password)
-      );
+      const response: UserResponse = await resetUserPassword(values.password);
 
       if (response?.error) {
         return toast({

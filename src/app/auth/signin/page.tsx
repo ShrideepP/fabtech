@@ -37,9 +37,7 @@ export default function Signin() {
   async function onSubmit(values: z.infer<typeof authSchema>) {
     setIsLoading(true);
     try {
-      const response: AuthTokenResponsePassword = JSON.parse(
-        await signin(values)
-      );
+      const response: AuthTokenResponsePassword = await signin(values);
 
       if (response?.error) {
         return toast({

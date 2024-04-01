@@ -47,7 +47,7 @@ export default function ForgotPassword() {
         | {
             data: null;
             error: AuthError;
-          } = JSON.parse(await sendResetEmail(values.email));
+          } = await sendResetEmail(values.email);
 
       if (response?.error) {
         return toast({

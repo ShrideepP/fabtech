@@ -5,6 +5,8 @@ import ProcessDetails from "@/components/forms/process-details/finalised-measure
 import MeasurementsContainer from "@/components/measurements-container";
 import BasicDetails from "@/components/forms/basic-details";
 import { Separator } from "@/components/ui/separator";
+import { Icons } from "@/components/icons";
+import Link from "next/link";
 
 async function getCustomerDetails(customerId: string) {
   const supabase = createClient();
@@ -45,10 +47,15 @@ export default async function ViewDetails({ params }: ViewDetailsProps) {
         defaultValues={customerDetails}
       />
       <Separator />
-      <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize underline underline-offset-4">
-        Product Measurements
-      </h4>
-      <MeasurementsContainer id={params?.customerId} mode="read" />
+      <Link
+        href={`/finalised-measurements/view/${params.customerId}/measurements`}
+        className="flex items-center gap-2"
+      >
+        <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize underline underline-offset-4 hover:no-underline">
+          Product Measurements
+        </h4>
+        <Icons.arrowUpRight className="w-4 h-4" />
+      </Link>
       <Separator />
       <h4 className="text-base sm:text-lg md:text-xl text-foreground font-medium capitalize underline underline-offset-4">
         Process Details

@@ -13,6 +13,7 @@ import {
   ChevronDown,
   CalendarIcon,
   Copy,
+  ArrowUpRight,
 } from "lucide-react";
 
 export const Icons = {
@@ -30,4 +31,5 @@ export const Icons = {
   chevronDown: ChevronDown,
   calendarIcon: CalendarIcon,
   copy: Copy,
+  arrowUpRight: ArrowUpRight,
 };
